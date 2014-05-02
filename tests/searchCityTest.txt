@@ -1,0 +1,3 @@
+curl -i -X POST -d '{}' http://172.17.0.3:27017/?city=DUBLIN/
+
+curl -i -X POST -d '{}' http://172.17.0.3:27017/?city=BE/

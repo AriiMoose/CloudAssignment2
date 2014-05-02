@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo docker stop flask
+sudo docker rm flask
+sudo docker build --tag="flask" flask
+sudo docker run --name="flask" -d --link=mongo:mydatabase flask

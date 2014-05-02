@@ -1,0 +1,3 @@
+curl -i -X POST -d '{}' http://172.17.0.3:27017/?pop>1000&city=new&state=NY/
+
+curl -i -X POST -d '{}' http://172.17.0.3:27017/?pop<100000&city=el&state=CA/

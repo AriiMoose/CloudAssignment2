@@ -1,0 +1,20 @@
+#!/bin/bash
+
+sudo docker stop mongo_data mongo flask reverse_proxy
+sudo docker rm mongo_data mongo flask reverse_proxy
+
+sudo docker rmi mongo_data mongo flask	
+
+sudo docker build --tag="mongo_data" mongoDataDocker
+sudo docker build --tag="mongo" mongoDocker
+sudo docker build --tag="flask" flask
+sudo docker build --tag="reverse_proxy" apacheDocker
+
+sudo docker run --name="mongo_data" -d -i mongo_data
+sudo docker run --name="mongo" -d --volumes-from=mongo_data mongo
+sudo docker run --name="flask" -d --link=mongo:mydatabase flask
+sudo docker run --name="reverse_proxy" -d -p 80:80 -p 443:443 --link=flask:app  reverse_proxy
+
+#mongoimport --host "172.17.0.4" --db mydatabase --collection mytable < zips.json
+ 
+
